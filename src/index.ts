@@ -2,6 +2,7 @@ import "dotenv/config";
 import { Client, Intents } from "discord.js";
 
 import { commandsController } from "./Commands";
+import { interactionController } from "./Interactions";
 
 (async () => {
   await commandsController.registerCommands();
@@ -18,8 +19,12 @@ client.on("ready", () => {
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
 
-  if (interaction.commandName === "ping") {
-    await interaction.reply("Pong!");
+  const foundInteraction = await interactionController.findInteraction(
+    interaction.commandName
+  );
+
+  if (foundInteraction) {
+    foundInteraction.run(interaction);
   }
 });
 
