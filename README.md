@@ -8,7 +8,7 @@ It was used ChuckNorris.io API to get the jokes (https://api.chucknorris.io)
 
 # Install dependencies
 ```` 
-yarn dev
+yarn 
 ```` 
 
 # Get your credentials 
